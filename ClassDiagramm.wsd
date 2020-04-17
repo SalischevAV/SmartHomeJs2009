@@ -1,0 +1,43 @@
+@startuml smartHome
+class Device{
+    brand,
+    location,
+    state,
+    timer(),
+    power(),
+    toString()
+}
+
+
+Device <|-- SoundDevice
+Device <|-- LightDevice
+Device <|-- ConnectionDevice
+Device <|-- AccessDevice
+Device <|-- ClimatDevice
+Device <|-- AlarmDevice
+
+SoundDevice <|-- TV
+SoundDevice <|-- Radio
+SoundDevice <|-- Mp3
+
+LightDevice <|-- LedLamp
+LightDevice <|-- LedClock
+
+ConnectionDevice <|-- WiFiRouter
+ConnectionDevice <|-- BlueToothRouter
+
+AccessDevice <|-- DoorAccess
+AccessDevice <|-- WindowAccess
+
+ClimatDevice <|-- Radiator
+ClimatDevice <|-- Conditioner
+
+class Location{
+    livingRoom,
+    kitchen,
+    bathroom,
+    badroom,
+    hall
+}
+
+@enduml
