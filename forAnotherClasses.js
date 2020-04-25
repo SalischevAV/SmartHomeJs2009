@@ -43,4 +43,32 @@ Validator.prototype.isValueNumber = function(value){
         return true;
     } else return false;
 }
-//--
+//------------------------------------
+SoundDevice.prototype.volumeUp = function () {
+    ++this._volumeLevel;
+};
+
+SoundDevice.prototype.volumeDown = function () {
+    if (this._volumeLevel == 0) {
+
+    } else --this._volumeLevel;
+};
+
+
+SoundDevice.prototype.volume = function(volumeLevel){
+    if (volumeLevel === undefined){
+        return this._volumeLevel;
+    } else {
+         if (this._volumelevelIsValid(volumeLevel)){
+        this._volumeLevel = volumeLevel;
+        }
+    }
+    }
+
+    SoundDevice.prototype._volumelevelIsValid = function(volumeLevel){
+        if(0 <= volumeLevel && 100 >= volumeLevel){
+            return true;
+        } else {
+            return false;
+        }
+    };

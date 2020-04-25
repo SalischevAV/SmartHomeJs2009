@@ -1,6 +1,35 @@
 "use strict"
 
+function Regulator (min =0, max = 100, currentValue = 0){
+    this.__min = min;
+    this.__max = max;
+    this.__currentValue = currentValue;
+}
+Regulator.prototype.getMinMax = function (){
+    return [this.__min, this.__max];
+}
 
+Regulator.prototype.getCurrentValue = function(){
+    return this.__currentValue;
+}
+
+Regulator.prototype.currentValueUp = function(){
+    if (this.__currentValue == this.__max){}
+        else{ this.__currentValue++;}
+}
+
+Regulator.prototype.currentValueDown = function(){
+    if (this.__currentValue == this.__min){}
+        else{ this.__currentValue--;}
+}
+
+Regulator.prototype.setCurrentValue = function(value){
+    if (value <= this.__max && value >= this.__min){
+        this.__currentValue = value;
+    }
+}
+
+//------------------------------------------------------------------------------
 function Device (brand, power = false){
    
     this._brand = brand; //проверки на валидность будем делать в фабрике
@@ -23,6 +52,7 @@ Device.prototype.getPower = function(){
     return this._power;
 }
 
+
 Device.prototype.timerForPower = function(time, flag){   //time - interval minutes(int), flag - power on/off (boolean)
    if(typeof time == `number` && typeof flag == `boolean`){         //надо переделать чтобы выбрасывало ошибку по каждому парметру
         if (flag === true) {
@@ -33,6 +63,7 @@ Device.prototype.timerForPower = function(time, flag){   //time - interval minut
     } else throw new Error(`Invalid timer parametr`);
 }
 
+
 Device.prototype.toString = function(){
     return (`${this.constructor.name}, brandname: ${this._brand}, power : ${this.getPower()}`);
 }
@@ -40,7 +71,7 @@ Device.prototype.toString = function(){
 
 //--------------------------------------------------------------------------------------------------------------------------
 
-function SoundDevice (brand, power = false, volumeLevel = 0){ //абстрактній класс
+function SoundDevice (brand, power = false, volumeLevel = new Regulator()){ //абстрактній класс
     Device.call(this,brand, power = false);
     this._volumeLevel = volumeLevel;
 }
@@ -49,43 +80,26 @@ SoundDevice.prototype = Object.create(Device.prototype);
 SoundDevice.prototype.constructor = SoundDevice;
 
 SoundDevice.prototype.toString = function(){
-    return Device.prototype.toString.call(this) + `, volume level: ${this._volumeLevel}`;
+    return Device.prototype.toString.call(this) + `, volume level: ${this._volumeLevel.getCurrentValue()}`;
 }
 
 SoundDevice.prototype.volumeUp = function () {
-    ++this._volumeLevel;
+    this._volumeLevel.currentValueUp();
 };
 
 SoundDevice.prototype.volumeDown = function () {
-    if (this._volumeLevel == 0) {
-
-    } else --this._volumeLevel;
+    this._volumeLevel.currentValueDown();
 };
 
-
-SoundDevice.prototype.volume = function(volumeLevel){
-    if (volumeLevel === undefined){
-        return this._volumeLevel;
-    } else {
-         if (this._volumelevelIsValid(volumeLevel)){
-        this._volumeLevel = volumeLevel;
-        }
-    }
-    }
-
-    SoundDevice.prototype._volumelevelIsValid = function(volumeLevel){
-        if(0 <= volumeLevel && 100 >= volumeLevel){
-            return true;
-        } else {
-            return false;
-        }
-    };
+SoundDevice.prototype.setVolume = function(value){
+    this._volumeLevel.setCurrentValue(value);
+}
 
     
     //--------------------------------------------------------------
 
-    function Mp3Player(brand, diskName, power = false, volumeLevel = 0, disk = ["track1", "track2", "track3", "track4", "track5"], currentTrack = 1) {        
-        SoundDevice.call(this, brand, power = false, volumeLevel = 0);
+    function Mp3Player(brand, diskName, power = false, volumeLevel = new Regulator(), disk = ["track1", "track2", "track3", "track4", "track5"], currentTrack = 1) {        
+        SoundDevice.call(this, brand, power = false, volumeLevel = new Regulator());
         this._currentTrack = currentTrack;
         this._diskName = diskName;
         this._disk = disk;
