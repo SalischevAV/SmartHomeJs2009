@@ -181,7 +181,9 @@ SoundDevice.prototype.getVolume = function(){
         };
 
         Mp3Player.prototype.setTrack = function (number) {
-            if (0 < number && number < this._disk.length);
+            if (0 < number && number < this._disk.length){
+                this._currentTrack = number;
+            }
         };
 
         Mp3Player.prototype.nextTrack = function () {
@@ -195,6 +197,14 @@ SoundDevice.prototype.getVolume = function(){
                 //this.track = 1 ;
             } else this._currentTrack--;
         };
+
+        Mp3Player.prototype.disk = function(disk){
+            if (disk ===undefined) {
+                return this._disk;
+            } else if (Array.isArray(disk)){
+                this._disk = disk;
+            }
+        }
 
         Mp3Player.prototype.toString = function(){
             return SoundDevice.prototype.toString.call(this) + `, disk name: ${this._diskName}, current track: ${this._currentTrack}`;
@@ -222,6 +232,9 @@ TV.prototype.setChannel = function(value){
     this._currentChannel.setChannel(value);
 }
 
+TV.prototype.getChannelList = function(){
+    return this._currentChannel.getChannelList();
+}
 
 TV.prototype.toString = function(){
     return SoundDevice.prototype.toString.call(this) + `, current channel: ${this._currentChannel.getChannel()}`
