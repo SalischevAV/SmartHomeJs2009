@@ -25,6 +25,10 @@ class SmartHome{
 
     }
 
+    findDeviceByDestination(){}
+
+    findDevicesFromLocation(){}
+
     getAviableDevices(){
         let res = "";
     for (let entry of this._aviableDevices){

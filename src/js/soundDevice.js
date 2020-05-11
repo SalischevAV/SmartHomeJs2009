@@ -17,7 +17,7 @@ class SoundDevice extends Device{
         }else throw new Error (`${this.constructor.name} error: all manipulation can be only if power on.`)
     };
 
-    setVolume (value){
+    set volume (value){
         if(this.power){
         this._volumeLevel.currentValue = value;
         }else throw new Error (`${this.constructor.name} error: all manipulation can be only if power on.`)

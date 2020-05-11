@@ -27,12 +27,6 @@ class Mp3Player extends SoundDevice{
         }
     }
 
-    setTrack(number){
-        if (0 < number && number < this._disk.length){
-            this._currentTrack = number;
-        }
-    }
-
     nextTrack(){
         if (this._currentTrack >= this._disk.length) {
             this._currentTrack = this._disk.length;

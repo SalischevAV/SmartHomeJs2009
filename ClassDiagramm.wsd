@@ -1,43 +1,105 @@
+skinparam classAttributeIconSize 0
 @startuml smartHome
-class Device{
-    brand,
-    location,
-    state,
-    timer(),
-    powerSwitch(),
-    toString()
+
+class Validator{
+    +static isValueString(object) : bool,
+    +static isValueBoolean(object) : bool,
+    +static isValueNumber(object) : bool,
+    +static isValueArray(object) : bool,
+    +static isLocationValid(object) : bool,
+    +static isPositionValid(object) : bool,
+    +static isDeviceValid(object) : bool
+}
+
+class ChannelReciver{
+    +Constructor(Map,[number, string]),
+    -Map channelList, 
+    -[number, string] currentChannel,
+    -[] psevdoChannelList,
+    -number psevdoCurrentCnannel,
+    -getArrFromMapKeys() : [],
+    -channelUp() :void,
+    -channelDown() : void,
+    +setChannel(number) : void, 
+    +getChannel() : number,
+    +getChannelList() : string
+}
+
+class Regulator{
+    Constructor(number, number, number),
+    -number min,
+    -number max,
+    -number currentValue,
+    +getMinMax() : [],
+    setCurrentValue(number) : void,
+    getCurrentValue() : string, 
+    currentValueUp() : void,
+    currentValueDown() : void
+}
+
+
+abstract class Device{
+    +Constructor(string, bool, bool, Set)
+    #string brand,
+    #bool power,
+    #bool onlineStatus,
+    #Set avialableSSID,
+    +getBrand() : string,
+    +getPower() : bool,
+    +getAviableSSID(): string,
+    +getOnlineStatus() : bool,
+    +powerOn() :void,
+    +powerOff() :void,
+    +addAviableSSID(string): void,
+    +connectToWiFi(string) : Promise,
+    +timerForPower(number, bool) : void,
+    +toString() : string
+}
+
+abstract class SoundDevice{
+    +Constructor(string, bool, bool, Set, Regulator),
+    #string brand,
+    #bool power,
+    #bool onlineStatus,
+    #Set avialableSSID,
+    #Regulator volumeLevel,
+    +getBrand() : string,
+    +getPower() : bool,
+    +getAviableSSID(): string,
+    +getOnlineStatus() : bool,
+    +powerOn() :void,
+    +powerOff() :void,
+    +addAviableSSID(string): void,
+    +connectToWiFi(string) : Promise,
+    +timerForPower(number, bool) : void,
+    +volumeUp() : void,
+    +volumeDown() : void,
+    +setVolume (value) : void, 
+    +getVolume() : number,
+    +toString() : string
 }
 
 
 Device <|-- SoundDevice
+Device <|-- WiFiRouter
+Device <|-- Opencontroler
 Device <|-- LightDevice
-Device <|-- ConnectionDevice
-Device <|-- AccessDevice
-Device <|-- ClimatDevice
-Device <|-- AlarmDevice
+Device <|-- TemperatureDevice
+
 
 SoundDevice <|-- TV
-SoundDevice <|-- Radio
-SoundDevice <|-- Mp3
+SoundDevice <|-- Mp3Player
 
-LightDevice <|-- LedLamp
 LightDevice <|-- LedClock
+TemperatureDevice <|-- Conditioner
 
-ConnectionDevice <|-- WiFiRouter
-ConnectionDevice <|-- BlueToothRouter
+ChannelReciver o-- TV
+Regulator o-- SoundDevice
+Validator o-- Device
+Validator o-- SoundDevice
+Validator o-- TV
 
-AccessDevice <|-- DoorAccess
-AccessDevice <|-- WindowAccess
 
-ClimatDevice <|-- Radiator
-ClimatDevice <|-- Conditioner
 
-class Location{
-    livingRoom,
-    kitchen,
-    bathroom,
-    badroom,
-    hall
-}
 
 @enduml
