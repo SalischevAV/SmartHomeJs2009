@@ -11,6 +11,11 @@ class Device{
 
         this._aviableSSID = aviableSSID;
         this._onlineStatus = onlineStatus;
+        this._iD = Device.generateID();
+    }
+
+    static generateID(){
+        return Math.floor(Math.random() * (9000)) + 1000;
     }
 
     get brand(){

@@ -2,8 +2,8 @@
 
 class SmartHome{
     constructor(locations = LOCATION, aviableDevices = new Map()) {
-        this._locations = locations;
-        this._aviableDevices = aviableDevices;
+        this.__locations = locations;
+        this.__aviableDevices = aviableDevices;
         
     }
 
@@ -20,16 +20,14 @@ class SmartHome{
         } else throw new Error (`Incorrect device`);
 
         if (verificatedLocation &&  verificatedDevice){
-            this._aviableDevices.set(verificatedLocation, verificatedDevice)
+            this.__aviableDevices.set(verificatedLocation, verificatedDevice)
         }
 
     }
 
-    findDeviceByDestination(){}
+    
 
-    findDevicesFromLocation(){}
-
-    getAviableDevices(){
+    toString(){
         let res = "";
     for (let entry of this._aviableDevices){
         res += entry + `\n`;

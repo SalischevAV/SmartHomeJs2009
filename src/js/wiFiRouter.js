@@ -1,5 +1,5 @@
 `use strict`
-class wiFiRouter extends Device {
+class WiFiRouter extends Device {
     constructor(brand, power = false, onlineStatus = false, aviableSSID = new Set(), internetConnection = false, sSSID = ``, connectedDevices = new Set()){
         super(brand, power = false, onlineStatus = false, aviableSSID = new Set(),);
         this._internetConnection = internetConnection;

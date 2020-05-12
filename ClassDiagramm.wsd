@@ -39,11 +39,13 @@ class Regulator{
 
 
 abstract class Device{
+    +static generateID(): number,
     +Constructor(string, bool, bool, Set)
     #string brand,
     #bool power,
     #bool onlineStatus,
     #Set avialableSSID,
+    #number iD,
     +getBrand() : string,
     +getPower() : bool,
     +getAviableSSID(): string,
@@ -63,6 +65,7 @@ abstract class SoundDevice{
     #bool onlineStatus,
     #Set avialableSSID,
     #Regulator volumeLevel,
+    #number iD,
     +getBrand() : string,
     +getPower() : bool,
     +getAviableSSID(): string,
@@ -74,15 +77,144 @@ abstract class SoundDevice{
     +timerForPower(number, bool) : void,
     +volumeUp() : void,
     +volumeDown() : void,
-    +setVolume (value) : void, 
+    +setVolume(number) : void, 
     +getVolume() : number,
     +toString() : string
 }
 
+class Mp3Player{
+     +Constructor(string, bool, bool, Set, Regulator, string, [string], number),
+    #string brand,
+    #bool power,
+    #bool onlineStatus,
+    #Set avialableSSID,
+    #Regulator volumeLevel,
+    #number iD,
+    #number currentTrack,
+    #string diskName,
+    #[string] disk,
+    +getBrand() : string,
+    +getPower() : bool,
+    +getAviableSSID(): string,
+    +getOnlineStatus() : bool,
+    +powerOn() :void,
+    +powerOff() :void,
+    +addAviableSSID(string): void,
+    +connectToWiFi(string) : Promise,
+    +timerForPower(number, bool) : void,
+    +volumeUp() : void,
+    +volumeDown() : void,
+    +setVolume(number) : void, 
+    +getVolume() : number,    
+    +getTrack() : number,
+    +setTrack(number): void,
+    +getDisk() : [string],
+    +setDisk([string]): void,
+    +nextTrack(): void,
+    +previousTrack(): void,
+    +toString() : string
+}
+
+class TV{
+    +Constructor(string, bool, bool, Set, Regulator, ChannelReciver),
+    #string brand,
+    #bool power,
+    #bool onlineStatus,
+    #Set avialableSSID,
+    #Regulator volumeLevel,
+    #number iD,
+    #ChannelReciver currentChannel
+    +getBrand() : string,
+    +getPower() : bool,
+    +getAviableSSID(): string,
+    +getOnlineStatus() : bool,
+    +powerOn() :void,
+    +powerOff() :void,
+    +addAviableSSID(string): void,
+    +connectToWiFi(string) : Promise,
+    +timerForPower(number, bool) : void,
+    +volumeUp() : void,
+    +volumeDown() : void,
+    +setVolume(number) : void, 
+    +getVolume() : number,
+    +nextChannel() : void,
+    +previousChannel() : void,
+    +setChannel(number) : void,
+    +getChannelList(): string,
+    +getChannel(): number,
+    +toString() : string
+
+}
+
+class OpenControler{
+    +static generateID(): number,
+    +Constructor(string, bool, bool, Set, string, [string])
+    #string brand,
+    #bool power,
+    #bool onlineStatus,
+    #Set avialableSSID,
+    #number iD,
+    #string position,
+    #[string] aviablePosition,
+    +getBrand() : string,
+    +getPower() : bool,
+    +getAviableSSID(): string,
+    +getOnlineStatus() : bool,
+    +powerOn() :void,
+    +powerOff() :void,
+    +addAviableSSID(string): void,
+    +connectToWiFi(string) : Promise,
+    +timerForPower(number, bool) : void,
+    +toString() : string
+}
+
+class SmartHome{
+    +Constructor(const, Map),
+    -string locations,
+    -Map aviableDevices,
+    +addDevice(string, Device): void,
+    +getDeviceByID(number): Device,
+    +removeDevice(Device): void,
+    +removeDeviceByID(Device): void,
+    +searchByLocation() : [],
+    +searchByAssigment(): [],
+    +searchByLocationAndAssigment: [],
+    +controlByLocation([]) : void,
+    +controlByAssigment([]) : void,
+    +controlByLocationAndAssigment([]) : void,
+    +toString() : string
+}
+
+class WiFiRouter{
+    +static generateID(): number,
+    +Constructor(string, bool, bool, Set, string, Set, bool, string, Set)
+    #string brand,
+    #bool power,
+    #bool onlineStatus,
+    #Set avialableSSID,
+    #number iD,
+    #bool internetConnection,
+    #string sSSID,
+    #connectedDevices,    
+    +getBrand() : string,
+    +getPower() : bool,
+    +getAviableSSID(): string,
+    +getOnlineStatus() : bool,
+    +powerOn() :void,
+    +powerOff() :void,
+    +addAviableSSID(string): void,
+    +connectToWiFi(string) : Promise,
+    +timerForPower(number, bool) : void,
+    +setInternetConnection(string):promise,
+    +getInternetConnection(): bool,
+    +getConnectedDevices(): Set,
+    +addDevice(device): void,
+    +toString() : string
+}
 
 Device <|-- SoundDevice
 Device <|-- WiFiRouter
-Device <|-- Opencontroler
+Device <|-- OpenControler
 Device <|-- LightDevice
 Device <|-- TemperatureDevice
 
@@ -100,6 +232,6 @@ Validator o-- SoundDevice
 Validator o-- TV
 
 
-
+Validator o-- SmartHome
 
 @enduml
