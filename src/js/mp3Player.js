@@ -1,6 +1,6 @@
 "use strict";
 class Mp3Player extends SoundDevice{
-    constructor(brand, aviableSSID = new Set(), diskName, power = false, volumeLevel = new Regulator(), disk = ["track1", "track2", "track3", "track4", "track5"], currentTrack = 1){
+    constructor(brand, diskName, aviableSSID = new Set(), power = false, volumeLevel = new Regulator(), disk = ["track1", "track2", "track3", "track4", "track5"], currentTrack = 1){
         super(brand, power = false, aviableSSID = new Set(),volumeLevel = new Regulator());
         this._currentTrack = currentTrack;
         this._diskName = diskName;
@@ -41,7 +41,7 @@ class Mp3Player extends SoundDevice{
     }
 
     toString(){
-        return super.toString() + `, disk name: ${this._diskName}, current track: ${this._currentTrack}`;
+        return super.toString() + `, disk name: ${this._diskName}, disk length: ${this._disk.length} tracks, current track: ${this._currentTrack}`;
     }
 
 }

@@ -26,15 +26,15 @@ class ChannelReciver{
 }
 
 class Regulator{
-    Constructor(number, number, number),
+    +Constructor(number, number, number),
     -number min,
     -number max,
     -number currentValue,
     +getMinMax() : [],
-    setCurrentValue(number) : void,
-    getCurrentValue() : string, 
-    currentValueUp() : void,
-    currentValueDown() : void
+    +setCurrentValue(number) : void,
+    +getCurrentValue() : string, 
+    +currentValueUp() : void,
+    +currentValueDown() : void
 }
 
 
@@ -52,7 +52,7 @@ abstract class Device{
     +getOnlineStatus() : bool,
     +powerOn() :void,
     +powerOff() :void,
-    +addAviableSSID(string): void,
+    #addAviableSSID(string): void,
     +connectToWiFi(string) : Promise,
     +timerForPower(number, bool) : void,
     +toString() : string
@@ -168,22 +168,6 @@ class OpenControler{
     +toString() : string
 }
 
-class SmartHome{
-    +Constructor(const, Map),
-    -string locations,
-    -Map aviableDevices,
-    +addDevice(string, Device): void,
-    +getDeviceByID(number): Device,
-    +removeDevice(Device): void,
-    +removeDeviceByID(Device): void,
-    +searchByLocation() : [],
-    +searchByAssigment(): [],
-    +searchByLocationAndAssigment: [],
-    +controlByLocation([]) : void,
-    +controlByAssigment([]) : void,
-    +controlByLocationAndAssigment([]) : void,
-    +toString() : string
-}
 
 class WiFiRouter{
     +static generateID(): number,
@@ -212,6 +196,26 @@ class WiFiRouter{
     +toString() : string
 }
 
+class SmartHome{
+    +Constructor(const, Map),
+    -string locations,
+    -Map aviableDevices,
+    +addDevice(string, Device): void,
+    +getDeviceByID(number): Device,
+    +removeDevice(Device): void,
+    +removeDeviceByID(ID): void,
+    +searchByLocation() : [],
+    +searchByClassName(): [],
+    +controlByLocation([]) : void,
+    +controlByByClassName([]) : void,
+    +toString() : string,
+
+    
+    provideWiFI(),
+    AdditionаlToWiFi()
+
+}
+
 Device <|-- SoundDevice
 Device <|-- WiFiRouter
 Device <|-- OpenControler
@@ -226,7 +230,7 @@ LightDevice <|-- LedClock
 TemperatureDevice <|-- Conditioner
 
 ChannelReciver o-- TV
-Regulator o-- SoundDevice
+Regulator <--> SoundDevice
 Validator o-- Device
 Validator o-- SoundDevice
 Validator o-- TV

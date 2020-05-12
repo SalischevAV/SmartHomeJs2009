@@ -40,7 +40,7 @@ class WiFiRouter extends Device {
         this._connectedDevices.clear();
     }
 
-    connectToWiFi(sSID){}
+    connectToWiFi(sSID){} //connect to himself!!!
 
 
     toString() {

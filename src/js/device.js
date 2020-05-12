@@ -18,6 +18,10 @@ class Device{
         return Math.floor(Math.random() * (9000)) + 1000;
     }
 
+    get iD(){
+        return this._iD;
+    }
+
     get brand(){
         return this._brand; 
     }
@@ -35,7 +39,7 @@ class Device{
 
     }
 
-    addAviableSSID(sSID){  //is called by method setInternetConnection(sSID) from WiFI
+    _addAviableSSID(sSID){  //is called by method setInternetConnection(sSID) from WiFI
         if(this.power){
         this._aviableSSID.add(sSID)
         } else throw new Error (`${this.constructor.name} error: all manipulation can be only if power on.`)
@@ -72,6 +76,6 @@ class Device{
      }
 
      toString(){
-        return (`${this.constructor.name}, brandname: ${this._brand}, power : ${this.power}, online status: ${this._onlineStatus}`);
+        return (`ID:${this._iD}, ${this.constructor.name}, brandname: \"${this._brand}\", power : ${this.power}, online status: ${this._onlineStatus}`);
     }
 }
