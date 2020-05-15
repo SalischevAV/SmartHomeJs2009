@@ -14,14 +14,17 @@ async function loadScript (src){
 loadScript("./src/js/constates.js");
 loadScript("./src/js/channelReciver.js");
 loadScript("./src/js/regulator.js");
-loadScript("./src/js/validator.js");
+loadScript("./src/js/Validator.js");
+loadScript("./src/js/List.js"); 
 loadScript("./src/js/device.js");
+loadScript("./src/js/WiFiDevice.js");
 loadScript("./src/js/soundDevice.js");
-loadScript("./src/js/mp3Player.js");
+loadScript("./src/js/Mp3Player.js");
 loadScript("./src/js/tv.js");
 loadScript("./src/js/wiFirouter.js"); 
-loadScript("./src/js/opencontroler.js");
-loadScript("./src/js/smarthome.js");
+loadScript("./src/js/Locker.js");
+loadScript("./src/js/smarthome.js"); 
+
 
 /*let d = new Device("fff");
 let mp3 = new Mp3Player("ttt", "gggg")

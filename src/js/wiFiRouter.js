@@ -1,21 +1,21 @@
 `use strict`
-class WiFiRouter extends Device {
+class WiFiRouter extends WiFiDevice {
     constructor(brand, power = false, onlineStatus = false, aviableSSID = new Set(), internetConnection = false, sSSID = ``, connectedDevices = new Set()){
-        super(brand, power = false, onlineStatus = false, aviableSSID = new Set(),);
+        super(brand, power = false, onlineStatus = false, aviableSSID = new Set());
         this._internetConnection = internetConnection;
         this._sSSID = sSSID;
         this._connectedDevices = connectedDevices;
         this._aviableSSID = null;
     }
 
-    setInternetConnection(sSID){  //will call method addAviableSSID;
+    setInternetConnection(sSID,  callback){  
         if(this.power){
-        return new Promise((resolve, reject) =>{
+        
             this._internetConnection = true;
             if(Validator.isValueString(sSID) && (sSID !==``) ){
-                resolve(this._sSSID = sSID);
-            } else reject(new Error(`SSID must be not null string`));
-        })
+                callback(this._sSSID = sSID); //will call method addAviableSSID;
+            } else  throw new Error(`SSID must be not null string`);
+        
         }else throw new Error (`${this.constructor.name} error: all manipulation can be only if power on.`)
     }
 
@@ -27,7 +27,7 @@ class WiFiRouter extends Device {
         return this._connectedDevices;
     }
 
-    addDevice(device){  //will be called by promise from device
+    addDevice(device){  //will be called by connectToWiFi from WiFiDevice
         if(this.power){
         if(this._internetConnection){
             this.connectedDevices.add(device);

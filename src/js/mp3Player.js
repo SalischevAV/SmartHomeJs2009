@@ -1,47 +1,48 @@
 "use strict";
 class Mp3Player extends SoundDevice{
-    constructor(brand, diskName, aviableSSID = new Set(), power = false, volumeLevel = new Regulator(), disk = ["track1", "track2", "track3", "track4", "track5"], currentTrack = 1){
-        super(brand, power = false, aviableSSID = new Set(),volumeLevel = new Regulator());
-        this._currentTrack = currentTrack;
-        this._diskName = diskName;
+    constructor(brand, power = false, aviableSSID = new Set(),  volumeLevel = new Regulator(), disk = new List()){
+        super(brand, power = false, aviableSSID = new Set(), volumeLevel = new Regulator());
         this._disk = disk;
     }
 
-    get track() {
-        return this._disk[this._currentTrack - 1];
-    }
-
-    set track(number){
-        if (0 < number && number < this._disk.length){
-            this._currentTrack = number;
-        }
-    }
-
     get disk(){
-        return this._disk;
+        return this._disk.list;
     }
 
     set disk(disk){
-        if (Validator.isValueArray(disk)){
-            this._disk = disk;
-        }
+            this._disk.list = disk;
     }
 
+    getTrackList(){
+        return this._disk.toString();
+    }
+
+    get track() {
+        return this._disk.current;
+    }
+
+    set track(number){
+       this._disk.current = number;
+    }   
+
     nextTrack(){
-        if (this._currentTrack >= this._disk.length) {
-            this._currentTrack = this._disk.length;
-        } else this._currentTrack++;
-       
+            this._disk.current++;
     }
 
     previousTrack(){
-        if (this._currentTrack == 1) {
-            //this.track = 1 ;
-        } else this._currentTrack--;
+        this._disk.current--;
+    }
+
+    set trackName(value){
+        this._disk.currentName = value;
+    }
+
+    get trackName(){
+        return this._disk.currentName;
     }
 
     toString(){
-        return super.toString() + `, disk name: ${this._diskName}, disk length: ${this._disk.length} tracks, current track: ${this._currentTrack}`;
+        return super.toString() + `, current track: ${this._disk.currentName}`;
     }
 
 }

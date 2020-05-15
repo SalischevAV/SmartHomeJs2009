@@ -42,19 +42,23 @@ abstract class Device{
     +static generateID(): number,
     +Constructor(string, bool, bool, Set)
     #string brand,
-    #bool power,
-    #bool onlineStatus,
-    #Set avialableSSID,
+    #bool power,  
     #number iD,
     +getBrand() : string,
     +getPower() : bool,
-    +getAviableSSID(): string,
-    +getOnlineStatus() : bool,
     +powerOn() :void,
     +powerOff() :void,
+    +timerForPower(number, bool) : void,
+    +toString() : string
+}
+
+abstract class WiFiDevice{
+    #bool onlineStatus,
+    #Set avialableSSID,
+    +getAviableSSID(): string,
+    +getOnlineStatus() : bool,
     #addAviableSSID(string): void,
     +connectToWiFi(string) : Promise,
-    +timerForPower(number, bool) : void,
     +toString() : string
 }
 
@@ -217,11 +221,12 @@ class SmartHome{
 }
 
 Device <|-- SoundDevice
-Device <|-- WiFiRouter
 Device <|-- OpenControler
 Device <|-- LightDevice
 Device <|-- TemperatureDevice
+Device <|-- WiFiDevice
 
+WiFiDevice<|-- WiFiRouter
 
 SoundDevice <|-- TV
 SoundDevice <|-- Mp3Player

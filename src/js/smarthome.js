@@ -2,13 +2,13 @@
 
 class SmartHome {
     constructor(locations = LOCATION, aviableDevices = new Map()) {
-        this.__locations = locations;
-        this.__aviableDevices = aviableDevices;
+        this._locations = locations;
+        this._aviableDevices = aviableDevices;
 
     }
     get locations(){
         let res = ``;
-        return this.__locations.map((item) => res+item);
+        return this._locations.map((item) => res+item);
     }
 
     addDevice(location, device) {
@@ -24,30 +24,30 @@ class SmartHome {
         } else throw new Error(`Incorrect device`);
 
         if (verificatedLocation && verificatedDevice) {
-            this.__aviableDevices.set(verificatedDevice, verificatedLocation);
+            this._aviableDevices.set(verificatedDevice, verificatedLocation);
         }
 
     }
     getDeviceByID(id) {
-        for (let device of this.__aviableDevices.keys()) {
+        for (let device of this._aviableDevices.keys()) {
             if (device.iD === id) {
                 return device;
             }
         }
     }
     removeDeviceByID(id) {
-        for (let device of this.__aviableDevices.keys()) {
+        for (let device of this._aviableDevices.keys()) {
             if (device.iD === id) {
-                this.__aviableDevices.delete(device);
+                this._aviableDevices.delete(device);
             }
         }
     }
 
     removeDevice(device) {
         if (Validator.isDeviceValid(device)) {
-            for (let dev of this.__aviableDevices.keys()) {
+            for (let dev of this._aviableDevices.keys()) {
                 if (dev === device) {
-                    this.__aviableDevices.delete(device);
+                    this._aviableDevices.delete(device);
                 }
             }
         } else throw new Error(`incorrect type of object`)
@@ -56,7 +56,7 @@ class SmartHome {
     searchByLocation(location){
         let res = [];
         if(Validator.isLocationValid(location)){
-           this.__aviableDevices.forEach((value,key) =>{
+           this._aviableDevices.forEach((value,key) =>{
                if(value == location){
                    res.push(key);
                }
@@ -68,9 +68,9 @@ class SmartHome {
 
     searchByClassName(name){
         let res = [];      
-           this.__aviableDevices.forEach((value,key) =>{
+           this._aviableDevices.forEach((value,key) =>{
                if(key.constructor.name == name){
-                   res.push(key)
+                   res.push(key);
                 }
             });
         return res;
@@ -79,13 +79,12 @@ class SmartHome {
 
     toString() {
         let res = "";
-        this.__aviableDevices.forEach ((value, key) => res += value + `+++` + key + `\n`);
-        
-        return res;
+        this._aviableDevices.forEach ((value, key) => res += `Location: ${value}. Device: ${key}` + `\n`);
+         return res;
     }
 
     allPower() {
-        for (let value of this.__aviableDevices.values()) {
+        for (let key of this._aviableDevices.keys()) {
             value.powerOn()
         };
     }

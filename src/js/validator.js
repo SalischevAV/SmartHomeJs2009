@@ -1,42 +1,48 @@
 "use strict";
-class Validator{
+class Validator {
 
-    static isValueString(value){
-        if (typeof value == `string`){
+    static isValueString(value) {
+        if (typeof value == `string`) {
             return true;
         } else {
             return false;
         }
     }
 
-    static isValueBoolean(value){
-        if (typeof value == `boolean`){
+    static isValueBoolean(value) {
+        if (typeof value == `boolean`) {
             return true;
         } else {
             return false;
         }
     }
 
-    static isValueNumber(value){
-        if (typeof value == `number`){
+    static isValueNumber(value) {
+        if (typeof value == `number`) {
             return true;
         } else {
             return false;
         }
     }
 
-    static isValueArray(value){
-        if (Array.isArray(value)){
+    static isValueArray(value) {
+        if (Array.isArray(value)) {
             return true;
         } else {
             return false;
         }
     }
 
-    static isLocationValid = function(location){
+    static isValueMap(value){
+        if (value instanceof Map){
+            return true;
+        } else return false;
+    }
+
+    static isLocationValid = function (location) {
         let flag = false;
-        for(let i = 0; i < LOCATION.length; i++){
-            if (LOCATION[i] == location){
+        for (let i = 0; i < LOCATION.length; i++) {
+            if (LOCATION[i] == location) {
                 flag = true;
                 break;
             }
@@ -44,21 +50,47 @@ class Validator{
         return flag;
     };
 
-    static isPositionValid = function(position){
+    static isPositionValid = function (position) {
         let flag = false;
-        for(let i = 0; i < OPENINGPOSITION.length; i++){
-            if (OPENINGPOSITION[i] == position){
+        for (let i = 0; i < OPENINGPOSITION.length; i++) {
+            if (OPENINGPOSITION[i] == position) {
                 flag = true;
                 break;
             }
         }
         return flag;
-    };
+    }
 
-    static isDeviceValid = function(device){
-        if(device instanceof Device){
-        return true;
+
+    static isArrayHasValue(inputValue, array) {
+        let flag = false;
+        array.forEach((item) => {
+            if (item === inputValue) {
+                flag = true;
+                return;
+            }
+        })
+        return flag;
+    }
+
+    static isDeviceValid = function (device) {
+        if (device instanceof Device) {
+            return true;
         } else return false;
 
     }
+
+
+    static isListHasValue(inputValue, list) {
+        let flag = false;
+        for (let value of list.values()) {
+            if (inputValue == value) {
+                flag = true;
+                return flag;
+            }
+        }
+    }
+
+
+
 }

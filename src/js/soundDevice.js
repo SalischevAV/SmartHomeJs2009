@@ -7,24 +7,24 @@ class SoundDevice extends Device{
 
     volumeUp() {
         if(this.power){
-        this._volumeLevel.currentValueUp();
+        this._volumeLevel.increase();
         } else throw new Error (`${this.constructor.name} error: all manipulation can be only if power on.`)
     };
 
     volumeDown() {
         if(this.power){
-        this._volumeLevel.currentValueDown();
+        this._volumeLevel.decrease();
         }else throw new Error (`${this.constructor.name} error: all manipulation can be only if power on.`)
     };
 
     set volume (value){
         if(this.power){
-        this._volumeLevel.currentValue = value;
+        this._volumeLevel.current = value;
         }else throw new Error (`${this.constructor.name} error: all manipulation can be only if power on.`)
     }
 
     get volume(){
-        return this._volumeLevel.currentValue;
+        return this._volumeLevel.current;
     }
 
     toString (){

@@ -1,32 +1,38 @@
 "use strict";
 class Regulator {
-    constructor(min =0, max = 100, currentValue = 0){
-        this.__min = min;
-        this.__max = max;
-        this.__currentValue = currentValue;
+    constructor(min =0, max = 100, current = 0){
+        this._min = min;
+        this._max = max;
+        this._current = current;
     }
 
-    getMinMax(){
-        return [this.__min, this.__max];
+
+    get min(){
+        return this._min;
     }
 
-    set currentValue(value){
+    get max(){
+        return this.__max;
+    }
+
+    set current(value){
         if (Validator.isValueNumber(value) && value <= this.__max && value >= this.__min){
-            this.__currentValue = value;
+            this._current = value;
         }  
     }
 
-    get currentValue(){
-        return this.__currentValue;
+    get current(){
+        return this._current;
     }
 
-    currentValueUp(){
-        if (this.__currentValue == this.__max){}
-            else{ this.__currentValue++;}
+    increase(){
+        if (this._current < this._max){
+             this._current++;
+            }
     }
 
-    currentValueDown(){
-        if (this.__currentValue == this.__min){}
-            else{ this.__currentValue--;}
+    decrease(){
+        if (this._current > this._min){
+           this._current--;}
     }
 }
