@@ -1,19 +1,19 @@
 `use strict`
-class WiFiRouter extends WiFiDevice {
-    constructor(brand, power = false, onlineStatus = false, aviableSSID = new Set(), internetConnection = false, sSSID = ``, connectedDevices = new Set()){
-        super(brand, power = false, onlineStatus = false, aviableSSID = new Set());
+class WiFiRouter extends Device {
+    constructor(brand, power = false, onlineStatus = false, internetConnection = false, sSSID = ``, connectedDevices = new Set()){
+        super(brand, power = false, onlineStatus = false);
         this._internetConnection = internetConnection;
         this._sSSID = sSSID;
         this._connectedDevices = connectedDevices;
-        this._aviableSSID = null;
     }
 
-    setInternetConnection(sSID,  callback){  
+    setInternetConnection(sSID,  callback){  //call method _addAviableSSID(sSID) from WiFiDevice
         if(this.power){
         
             this._internetConnection = true;
             if(Validator.isValueString(sSID) && (sSID !==``) ){
-                callback(this._sSSID = sSID); //will call method addAviableSSID;
+                this._sSSID = sSID;
+                callback(this._sSSID); //wf.setInternetConnection("musik", (data) => mp3.addAviableSSID(data))
             } else  throw new Error(`SSID must be not null string`);
         
         }else throw new Error (`${this.constructor.name} error: all manipulation can be only if power on.`)
@@ -30,9 +30,25 @@ class WiFiRouter extends WiFiDevice {
     addDevice(device){  //will be called by connectToWiFi from WiFiDevice
         if(this.power){
         if(this._internetConnection){
-            this.connectedDevices.add(device);
+            this._connectedDevices.add(device);
         }
         }else throw new Error (`${this.constructor.name} error: all manipulation can be only if power on.`)
+    }
+
+    removeDevice(device){
+        this._connectedDevices.delete(device);
+    }
+
+    checkDevices(){
+        setInterval(
+            () =>{
+                for (let device of this._connectedDevices){
+                    if (device.power === false){
+                        this._connectedDevices.delete(device);
+                    }
+                }
+            }
+            ,1000)
     }
 
     powerOff(){
@@ -40,12 +56,9 @@ class WiFiRouter extends WiFiDevice {
         this._connectedDevices.clear();
     }
 
-    connectToWiFi(sSID){} //connect to himself!!!
-
-
     toString() {
         return super.toString() + `, internet connection: ${this._internetConnection}`;
      }
 
 }
-
+//mp3.connectToWiFi("musik", (mp3)=>wf.addDevice(mp3))

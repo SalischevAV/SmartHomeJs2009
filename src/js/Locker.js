@@ -1,5 +1,5 @@
 "use strict"
-class Locker extends Device {
+class Locker extends WiFiDevice {
     constructor(brand, power = false, onlineStatus = false, aviableSSID = new Set(), position = `Close`, aviablePosition = OPENINGPOSITION) {
         super(brand, power = false, onlineStatus = false, aviableSSID = new Set());
         this._position = position;

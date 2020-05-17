@@ -39,29 +39,6 @@ class Validator {
         } else return false;
     }
 
-    static isLocationValid = function (location) {
-        let flag = false;
-        for (let i = 0; i < LOCATION.length; i++) {
-            if (LOCATION[i] == location) {
-                flag = true;
-                break;
-            }
-        }
-        return flag;
-    };
-
-    static isPositionValid = function (position) {
-        let flag = false;
-        for (let i = 0; i < OPENINGPOSITION.length; i++) {
-            if (OPENINGPOSITION[i] == position) {
-                flag = true;
-                break;
-            }
-        }
-        return flag;
-    }
-
-
     static isArrayHasValue(inputValue, array) {
         let flag = false;
         array.forEach((item) => {
@@ -73,11 +50,10 @@ class Validator {
         return flag;
     }
 
-    static isDeviceValid = function (device) {
+    static isDeviceValid (device) {
         if (device instanceof Device) {
             return true;
         } else return false;
-
     }
 
 

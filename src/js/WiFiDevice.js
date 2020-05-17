@@ -10,10 +10,10 @@ class WiFiDevice extends Device{
 
     powerOff(){
         this._power = false; 
-        this._aviableSSID.size = 0;
+        this._aviableSSID.clear();
     }
 
-    _addAviableSSID(sSID){  //is called by method setInternetConnection(sSID) from WiFI
+    addAviableSSID(sSID){  //is called by method setInternetConnection(sSID) from WiFI
         if(this.power){
         this._aviableSSID.add(sSID)
         } else throw new Error (`${this.constructor.name} error: all manipulation can be only if power on.`)
@@ -27,14 +27,16 @@ class WiFiDevice extends Device{
         return this._onlineStatus;
     }
 
-    connectToWiFi(sSID, callback){ 
+    connectToWiFi(sSID, callback){ //will call method addDevice from WiFirouter
         if(this.power){
             if (this._aviableSSID.has(sSID)){
                 this._onlineStatus = true;
-               callback(this);//will call method addDevice from WiFirouter
+               callback(this);//mp3.connectToWiFi("musik", (mp3)=>wf.addDevice(mp3))
             } else return (`unexisted ssid`);
 
     
         } else throw new Error (`${this.constructor.name} error: all manipulation can be only if power on.`)
     }
 }
+
+//wf.setInternetConnection("musik", (data) => mp3.addAviableSSID(data))

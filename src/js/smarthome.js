@@ -6,9 +6,9 @@ class SmartHome {
         this._aviableDevices = aviableDevices;
 
     }
-    get locations(){
+    get locations() {
         let res = ``;
-        return this._locations.map((item) => res+item);
+        return this._locations.map((item) => res + item);
     }
 
     addDevice(location, device) {
@@ -53,40 +53,43 @@ class SmartHome {
         } else throw new Error(`incorrect type of object`)
     }
 
-    searchByLocation(location){
+    searchByLocation(location) {
         let res = [];
-        if(Validator.isLocationValid(location)){
-           this._aviableDevices.forEach((value,key) =>{
-               if(value == location){
-                   res.push(key);
-               }
-           })
-           return res;
+        if (Validator.isArrayHasValue(location, this._locations)) {
+            this._aviableDevices.forEach((value, key) => {
+                if (value === location) {
+                    res.push(key);
+                }
+            })
+            return res;
         } else throw new Error(`Invalid location name`);
-        
+
     }
 
-    searchByClassName(name){
-        let res = [];      
-           this._aviableDevices.forEach((value,key) =>{
-               if(key.constructor.name == name){
-                   res.push(key);
-                }
-            });
+    searchByClassName(name) {
+        let res = [];
+        this._aviableDevices.forEach((value, key) => {
+            if (key.constructor.name == name) {
+                res.push(key);
+            }
+        });
         return res;
+    }
+
+    massPowerOn(arrayOfDevices) {
+        if (Validator.isValueArray(arrayOfDevices)) {
+            for (let device of arrayOfDevices) {
+                device.powerOn();
+                //() => key.PowerTimer(time, true)();
+            }
+        } else throw new Error(`Invalid parametr. Must be array of Devices`)
     }
 
 
     toString() {
         let res = "";
-        this._aviableDevices.forEach ((value, key) => res += `Location: ${value}. Device: ${key}` + `\n`);
-         return res;
-    }
-
-    allPower() {
-        for (let key of this._aviableDevices.keys()) {
-            value.powerOn()
-        };
+        this._aviableDevices.forEach((value, key) => res += `Location: ${key}. Device: ${value}` + `\n`);
+        return res;
     }
 
 }

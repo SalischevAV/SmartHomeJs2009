@@ -1,5 +1,5 @@
 "use strict";
-class SoundDevice extends Device{
+class SoundDevice extends WiFiDevice{
     constructor(brand, power = false, onlineStatus = false, aviableSSID = new Set(), volumeLevel = new Regulator()){
         super(brand, power = false, onlineStatus = false, aviableSSID = new Set());
         this._volumeLevel = volumeLevel;
