@@ -13,12 +13,13 @@ class Locker extends Device {
     setPosition(position, time) {
         if (this.power) {//---------------------------------
             return new Promise((resolve, reject) => {
-                if (Validator.isArrayHasValue(position, this._aviablePosition)) {
-                    setTimeout(((resolve) => this._position = position), time);
-                } else reject(new Error(`Incorrect position value`))
-
-                //---------------------------------------------------
-            })
+                setTimeout(() => {
+                    if (Validator.isArrayHasValue(position, this._aviablePosition)) {
+                        this._position = position;
+                        resolve(position);
+                    } else reject(new Error(`Incorrect position value`))
+                }, time);
+            });
         } else throw new Error(`${this.constructor.name} error: all manipulation can be only if power on.`)
     }
 

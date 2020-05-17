@@ -15,7 +15,7 @@ class SmartHome {
         let verificatedLocation;
         let verificatedDevice;
 
-        if (Validator.isLocationValid(location)) {
+        if (Validator.isArrayHasValue(location, this._locations)) {
             verificatedLocation = location;
         } else throw new Error(`Incorrect location`);
 

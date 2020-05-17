@@ -12,18 +12,17 @@ async function loadScript (src){
 }
 
 loadScript("./src/js/constates.js");
-loadScript("./src/js/channelReciver.js");
-loadScript("./src/js/regulator.js");
+loadScript("./src/js/Regulator.js");
 loadScript("./src/js/Validator.js");
 loadScript("./src/js/List.js"); 
-loadScript("./src/js/device.js");
+loadScript("./src/js/Device.js");
 loadScript("./src/js/WiFiDevice.js");
-loadScript("./src/js/soundDevice.js");
+loadScript("./src/js/SoundDevice.js");
 loadScript("./src/js/Mp3Player.js");
 loadScript("./src/js/tv.js");
 loadScript("./src/js/wiFirouter.js"); 
 loadScript("./src/js/Locker.js");
-loadScript("./src/js/smarthome.js"); 
+loadScript("./src/js/SmartHome.js"); 
 
 
 /*let d = new Device("fff");
@@ -33,7 +32,10 @@ let sh = new SmartHome();
 sh.addDevice("hall", d);
 sh.addDevice("bathroom", tv1);
 sh.addDevice("kitchen", mp3);
-sh.getAviableDevices();*/
+sh.getAviableDevices();
+
+
+loadScript("./src/js/channelReciver.js");*/
 
 
 
