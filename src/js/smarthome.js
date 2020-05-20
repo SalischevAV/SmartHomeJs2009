@@ -76,11 +76,18 @@ class SmartHome {
         return res;
     }
 
-    massPowerOn(arrayOfDevices) {
+    massPowerOn(arrayOfDevices, time) {
         if (Validator.isValueArray(arrayOfDevices)) {
             for (let device of arrayOfDevices) {
-                device.powerOn();
-                //() => key.PowerTimer(time, true)();
+                device.powerTimer(time, true);
+            }
+        } else throw new Error(`Invalid parametr. Must be array of Devices`)
+    }
+
+    massPowerOff(arrayOfDevices, time) {
+        if (Validator.isValueArray(arrayOfDevices)) {
+            for (let device of arrayOfDevices) {
+                device.powerTimer(time, false);
             }
         } else throw new Error(`Invalid parametr. Must be array of Devices`)
     }

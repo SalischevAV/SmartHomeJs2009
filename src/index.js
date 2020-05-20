@@ -11,18 +11,18 @@ async function loadScript (src){
     
 }
 
-loadScript("./src/js/constates.js");
+loadScript("./src/js/supporting/Constats.js");
 loadScript("./src/js/SmartHome.js"); 
-loadScript("./src/js/Regulator.js");
-loadScript("./src/js/Validator.js");
-loadScript("./src/js/List.js"); 
-loadScript("./src/js/Device.js");
-loadScript("./src/js/WiFiDevice.js");
-loadScript("./src/js/SoundDevice.js");
-loadScript("./src/js/Mp3Player.js");
-loadScript("./src/js/tv.js");
-loadScript("./src/js/wiFirouter.js"); 
-loadScript("./src/js/Locker.js");
+loadScript("./src/js/supporting/Regulator.js");
+loadScript("./src/js/supporting/Validator.js");
+loadScript("./src/js/supporting/List.js"); 
+loadScript("./src/js/model/Device.js");
+loadScript("./src/js/model/InternetDevice.js");
+loadScript("./src/js/model/SoundDevice.js");
+loadScript("./src/js/model/Mp3Player.js");
+loadScript("./src/js/model/WiFirouter.js"); 
+loadScript("./src/js/model/Locker.js");
+loadScript("./src/js/view/DrowDevice.js");
 
 
 /*let sh = new SmartHome();
@@ -36,7 +36,9 @@ sh.addDevice("bathroom", d2);
 sh.addDevice("hall", d3);
 sh.addDevice("kitchen", wf);
 sh.addDevice("hall", mp3);
-sh.massPowerOn(3000)
+let ar = sh.searchByLocation("hall")
+const mp = document.getElementById("root");
+const drowDev = new DrowDevice(d1, mp)
 
 
 /*let d = new Device("fff");

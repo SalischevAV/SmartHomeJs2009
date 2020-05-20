@@ -1,6 +1,6 @@
 "use strict"
 
-class WiFiDevice extends Device{
+class InternetDevice extends Device{
     constructor(brand, power = false, onlineStatus = false, aviableSSID = new Set()){
         super(brand, power = false);
         this._aviableSSID = aviableSSID;

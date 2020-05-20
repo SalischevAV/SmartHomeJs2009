@@ -44,22 +44,22 @@ class Device {
 
                 if (flag) {
                     this.powerOn();
-                    console.log(`${this.id}  вкл` + new Date());
+                    console.log(`${this.id}  вкл ` + new Date());
                 } else {
                     this.powerOff();
-                    console.log(`${this.id}  выкл` + new Date());
+                    console.log(`${this.id}  выкл ` + new Date());
                 }
                 resolve(this._power);
-            }, time)
+            }, time*3000);
         }
-        )
+        );
     }
 
 
 
 
     toString() {
-        return (`ID:${this._id}, ${this.constructor.name}, brandname: \"${this._brand}\", power : ${this.power}, online status: ${this._onlineStatus}`);
+        return (`ID:${this._id}, ${this.constructor.name}, brandname: \"${this._brand}\", power : ${this._power}`);
     }
 }
 
