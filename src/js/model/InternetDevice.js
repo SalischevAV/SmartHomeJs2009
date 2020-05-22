@@ -37,6 +37,10 @@ class InternetDevice extends Device{
     
         } else throw new Error (`${this.constructor.name} error: all manipulation can be only if power on.`)
     }
+
+    toString(){
+        return super.toString() + `, online status: ${this._onlineStatus}`;
+    }
 }
 
 //wf.setInternetConnection("musik", (data) => mp3.addAviableSSID(data))

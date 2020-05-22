@@ -8,6 +8,7 @@ class DrowDevice{
         this._radioTimerPowerOn = null;
         this._inputNumberMinutes = null;
         this._timerLbl = null;
+        this._divDevice = null;
         
     } 
 
@@ -29,7 +30,7 @@ class DrowDevice{
         return () =>{
         let time = this._inputNumberMinutes.value * 1;
         this._model.powerTimer(time, true).then((data)=> this._pToString.innerText = this._model.toString());
-        setInterval(()=>this._timerLbl.innerText = new Date(), 1000);
+        setInterval(()=>this._timerLbl.innerText = Timer.counter(false, time).next().value, 1000);
         }
     }
 
@@ -37,27 +38,27 @@ class DrowDevice{
         return () =>{
         let time = this._inputNumberMinutes.value * 1;
         this._model.powerTimer(time, false).then((data)=> this._pToString.innerText = this._model.toString());
-        setInterval(()=>this._timerLbl.innerText = new Date(), 1000);
+        //setInterval(()=>this._timerLbl.innerText = Timer.counter(false, time).next().value, 1000);
         }
     }
 
-    renderDevice(){
+    render(){
         //<div class="deviceDiv" id="modelId">
-        const divDevice = document.createElement("div");
-        divDevice.className = "deviceDiv";
-        divDevice.id = this._model.id;
+        this._divDevice = document.createElement("div");
+        this._divDevice.className = "deviceDiv";
+        this._divDevice.id = this._model.id;
 
         //<p class="toString">
         this._pToString = document.createElement("p");
         this._pToString.className = "toString";
         this._pToString.innerText = this._model.toString();
-        divDevice.appendChild(this._pToString);
+        this._divDevice.appendChild(this._pToString);
 
         //<p></p>
         const pDecorate1 = document.createElement("p");
         pDecorate1.innerText="PowerOn";
         pDecorate1.className = "decorate p";
-        divDevice.appendChild(pDecorate1);
+        this._divDevice.appendChild(pDecorate1);
 
         //radio powerOn
         const radioPowerOn = document.createElement("input");
@@ -71,7 +72,7 @@ class DrowDevice{
         const pDecorate2 = document.createElement("p");
         pDecorate2.innerText="PowerOff";
         pDecorate2.className = "decorateP";
-        divDevice.appendChild(pDecorate2);
+        this._divDevice.appendChild(pDecorate2);
 
         //radio powerOf
         const radioPowerOff = document.createElement("input");
@@ -84,7 +85,7 @@ class DrowDevice{
 
         const divTimer = document.createElement("div");
         divTimer.className = "timerDiv";
-        divDevice.appendChild(divTimer);
+        this._divDevice.appendChild(divTimer);
 
         const pDecorate3 = document.createElement("p");
         pDecorate3.innerText="Timer:";
@@ -148,7 +149,7 @@ class DrowDevice{
 
 
 
-        this._mountPoint.appendChild(divDevice);
+        this._mountPoint.appendChild(this._divDevice);
 
     }
 }

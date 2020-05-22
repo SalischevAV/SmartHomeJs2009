@@ -7,7 +7,7 @@ class WiFiRouter extends Device {
         this._connectedDevices = connectedDevices;
     }
 
-    setInternetConnection(sSID,  callback){  //call method _addAviableSSID(sSID) from WiFiDevice
+    setInternetConnection(sSID,  callback){  //call method _addAviableSSID(sSID) from InternetDevice
         if(this.power){
         
             this._internetConnection = true;
@@ -25,6 +25,12 @@ class WiFiRouter extends Device {
 
     get connectedDevices(){
         return this._connectedDevices;
+    }
+
+    listOfConnectedDevices(){
+        let res = "";
+        this._connectedDevices.forEach((value)=> res += `${value.id}; `);
+        return res;
     }
 
     addDevice(device){  //will be called by connectToWiFi from WiFiDevice
@@ -54,10 +60,12 @@ class WiFiRouter extends Device {
     powerOff(){
         super.powerOff();
         this._connectedDevices.clear();
+        this._internetConnection = false;
+        this._sSSID = "";
     }
 
     toString() {
-        return super.toString() + `, internet connection: ${this._internetConnection}`;
+        return super.toString() + `, internet connection: ${this._internetConnection}, SSID of connection: ${this._sSSID}`;
      }
 
 }

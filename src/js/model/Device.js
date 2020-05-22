@@ -50,7 +50,7 @@ class Device {
                     console.log(`${this.id}  выкл ` + new Date());
                 }
                 resolve(this._power);
-            }, time*3000);
+            }, time*1000);
         }
         );
     }

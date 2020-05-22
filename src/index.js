@@ -15,6 +15,7 @@ loadScript("./src/js/supporting/Constats.js");
 loadScript("./src/js/SmartHome.js"); 
 loadScript("./src/js/supporting/Regulator.js");
 loadScript("./src/js/supporting/Validator.js");
+loadScript("./src/js/supporting/Timer.js");
 loadScript("./src/js/supporting/List.js"); 
 loadScript("./src/js/model/Device.js");
 loadScript("./src/js/model/InternetDevice.js");
@@ -22,13 +23,17 @@ loadScript("./src/js/model/SoundDevice.js");
 loadScript("./src/js/model/Mp3Player.js");
 loadScript("./src/js/model/WiFirouter.js"); 
 loadScript("./src/js/model/Locker.js");
+loadScript("./src/js/view/DrowList.js");
 loadScript("./src/js/view/DrowDevice.js");
+loadScript("./src/js/view/DrowInternetDevice.js");
+loadScript("./src/js/view/DrowWiFiRouter.js"); 
 
 
 /*let sh = new SmartHome();
 let d1 = new Device(`kkk`);
 let d2 = new Device(`kkk`);
 let d3 = new Device(`kkk`);
+let id1 = new InternetDevice("qwe");
 let wf = new WiFiRouter("rrr")
 let mp3 = new Mp3Player("ttt", "gggg", "disk")
 sh.addDevice("hall", d1);
@@ -36,9 +41,14 @@ sh.addDevice("bathroom", d2);
 sh.addDevice("hall", d3);
 sh.addDevice("kitchen", wf);
 sh.addDevice("hall", mp3);
+sh.addDevice("livingroom", id1);
+sh.addDevice("livingroom", wf);
 let ar = sh.searchByLocation("hall")
 const mp = document.getElementById("root");
-const drowDev = new DrowDevice(d1, mp)
+const drowDev = new DrowDevice(d1, mp);
+const drowIDev = new DrowInternetDevice(id1, mp);
+const drowList = new DrowList(ar, mp);
+const drowWf = new DrowWiFiRouter(wf, mp);
 
 
 /*let d = new Device("fff");
