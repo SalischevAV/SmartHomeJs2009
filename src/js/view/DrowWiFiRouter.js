@@ -1,34 +1,34 @@
 "use strict"
 
 class DrowWiFiRouter extends DrowDevice {
-    constructor (model, mountPoint){
+    constructor(model, mountPoint) {
         super(model, mountPoint);
         this._divConnectedDevice = null;
     }
 
-    _btnConnectToInternetHahdler(){
-        return ()=>{
+    _btnConnectToInternetHahdler() {
+        return () => {
             let ssid = prompt("Enter SSID to your connection", "");
-            this._model.setInternetConnection(ssid, ()=>true);
+            this._model.setInternetConnection(ssid, () => true);
             this._pToString.innerText = this._model.toString();
         }
     }
 
-    _btnConnectedDevicesHandler(){
+    _btnConnectedDevicesHandler() {
         return () => {
             this._divConnectedDevice.classList.toggle("hiddenListDev");
-            if(!this._divConnectedDevice.classList.contains("hiddenListDev")){          
-            let qwe = new DrowList(this._model.connectedDevices, this._divConnectedDevice);
-            qwe.render();
-        } else this._divConnectedDevice.innerText = "";
-            
+            if (!this._divConnectedDevice.classList.contains("hiddenListDev")) {
+                let listRender = new DrowList(this._model.connectedDevices, this._divConnectedDevice);
+                listRender.render();
+            } else this._divConnectedDevice.innerText = "";
+
         }
 
     }
 
-    render(){
+    render() {
         super.render();
-        
+
         const btnConnectToInternet = document.createElement("button");
         btnConnectToInternet.type = "button";
         btnConnectToInternet.innerText = "Connect to Internet";

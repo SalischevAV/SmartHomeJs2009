@@ -50,6 +50,15 @@ const drowIDev = new DrowInternetDevice(id1, mp);
 const drowList = new DrowList(ar, mp);
 const drowWf = new DrowWiFiRouter(wf, mp);
 
+drowWf.render();
+
+wf.addDevice(d1);
+wf.addDevice(d2);
+wf.addDevice(d3);
+
+let qwe = [d1, d2, d3]
+let asd = new DrowList(qwe, document.getElementById("root"))
+asd.render()
 
 /*let d = new Device("fff");
 let mp3 = new Mp3Player("ttt", "gggg")
