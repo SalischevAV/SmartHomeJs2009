@@ -26,6 +26,7 @@ loadScript("./src/js/model/Locker.js");
 loadScript("./src/js/view/DrowList.js");
 loadScript("./src/js/view/DrowDevice.js");
 loadScript("./src/js/view/DrowInternetDevice.js");
+loadScript("./src/js/view/DrowSoundDevice.js");
 loadScript("./src/js/view/DrowWiFiRouter.js"); 
 
 
@@ -49,6 +50,7 @@ const drowDev = new DrowDevice(d1, mp);
 const drowIDev = new DrowInternetDevice(id1, mp);
 const drowList = new DrowList(ar, mp);
 const drowWf = new DrowWiFiRouter(wf, mp);
+const drowSound = new DrowSoundDevice(mp3, mp);
 
 drowWf.render();
 

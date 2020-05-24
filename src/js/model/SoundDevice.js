@@ -5,6 +5,14 @@ class SoundDevice extends InternetDevice{
         this._volumeLevel = volumeLevel;
     }
 
+    get min(){
+        return this._volumeLevel._min;
+    }
+
+    get max(){
+        return this._volumeLevel._max;
+    }
+
     volumeUp() {
         if(this.power){
         this._volumeLevel.increase();

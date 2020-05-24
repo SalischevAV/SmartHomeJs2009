@@ -15,8 +15,8 @@ class Regulator {
         return this.__max;
     }
 
-    set current(value){
-        if (Validator.isValueNumber(value) && value <= this.__max && value >= this.__min){
+    set current(value){  //if (Validator.isValueNumber(value) && value <= this.__max && value >= this.__min)
+        {
             this._current = value;
         }  
     }
