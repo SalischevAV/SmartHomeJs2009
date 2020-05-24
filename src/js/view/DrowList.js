@@ -5,6 +5,7 @@ class DrowList {
         this._list = list;
         this._mountPoint = mountPoint;
         this._deviceInfo = null;
+        this._externalHandler = null;
     }
 
     _deviceInfoClickHandler() {
@@ -21,26 +22,36 @@ class DrowList {
             )
             p.remove();
             btn.remove();
+
         }
 
     }
 
+    set externalHandler(handler) {
+        this._externalHandler = handler;
+    }
 
 
 
-    render() {
+    render(flag) {
         this._list.forEach(
             (item) => {
                 this._deviceInfo = document.createElement("p");
-                this._deviceInfo.innerText = item.id;  //toString();
-                //this._deviceInfo.addEventListener("click", ()=>console.log("2222"));
                 this._mountPoint.appendChild(this._deviceInfo);
+                const manipulateBtn = document.createElement("button");
+                manipulateBtn.type = "button";
 
-                const delBtn = document.createElement("button");
-                delBtn.type = "button";
-                delBtn.innerText = "-";
-                this._deviceInfo.addEventListener("click", this._deviceInfoClickHandler());
-                this._deviceInfo.appendChild(delBtn);
+                if (flag == false) {
+                    this._deviceInfo.innerText = item.id;
+                    manipulateBtn.innerText = "-";
+                    this._deviceInfo.addEventListener("click", this._deviceInfoClickHandler(flag));
+                } else {
+                    this._deviceInfo.innerText = item;
+                    manipulateBtn.innerText = "+";
+                    //this._deviceInfo.addEventListener("click", this._externalHandler());
+                }
+
+                this._deviceInfo.appendChild(manipulateBtn);
 
             }
         )

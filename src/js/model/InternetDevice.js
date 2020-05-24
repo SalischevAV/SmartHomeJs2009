@@ -4,6 +4,7 @@ class InternetDevice extends Device{
     constructor(brand, power = false, onlineStatus = false, aviableSSID = new Set()){
         super(brand, power = false);
         this._aviableSSID = aviableSSID;
+        this._currentSSID = null;
         this._onlineStatus = onlineStatus;
     }
 
@@ -27,9 +28,14 @@ class InternetDevice extends Device{
         return this._onlineStatus;
     }
 
+    get currentSSID(){
+        return this._aviableSSID;
+    }
+
     connectToWiFi(sSID, callback){ //will call method addDevice from WiFirouter
         if(this.power){
             if (this._aviableSSID.has(sSID)){
+                this._currentSSID = sSID;
                 this._onlineStatus = true;
                callback(this);//mp3.connectToWiFi("musik", (mp3)=>wf.addDevice(mp3))
             } else return (`unexisted ssid`);
@@ -39,7 +45,7 @@ class InternetDevice extends Device{
     }
 
     toString(){
-        return super.toString() + `, online status: ${this._onlineStatus}`;
+        return super.toString() + `, online status: ${this._onlineStatus}, current SSID: ${this._currentSSID}`;
     }
 }
 
