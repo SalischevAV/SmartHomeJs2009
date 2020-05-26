@@ -1,0 +1,33 @@
+.deviceDiv{
+    width: 220px;
+    border: 1px solid black;
+}
+
+.timerDiv{
+    position: relative;
+    overflow: hidden;
+}
+
+.timerDiv input{
+   float: left;
+}
+
+.timerDiv div{
+    float: left;
+    padding: 5px;
+}
+
+.timerRadio{
+    float: left;
+}
+
+.timerLbl {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.hiddenListDev{
+    display: none;
+}
+

@@ -24,6 +24,7 @@ loadScript("./src/js/model/Mp3Player.js");
 loadScript("./src/js/model/WiFirouter.js"); 
 loadScript("./src/js/model/Locker.js");
 loadScript("./src/js/view/DrowList.js");
+loadScript("./src/js/view/DrowNameList.js");
 loadScript("./src/js/view/DrowDevice.js");
 loadScript("./src/js/view/DrowInternetDevice.js");
 loadScript("./src/js/view/DrowSoundDevice.js");
