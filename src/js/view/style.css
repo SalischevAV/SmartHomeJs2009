@@ -1,5 +1,5 @@
 .deviceDiv{
-    width: 220px;
+    width: 300px;
     border: 1px solid black;
 }
 
@@ -31,3 +31,6 @@
     display: none;
 }
 
+.selectedItem{
+    background-color: chartreuse;
+}

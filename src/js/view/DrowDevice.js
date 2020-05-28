@@ -28,17 +28,35 @@ class DrowDevice{
 
     _powerOnRadioTimerClickHandler(){
         return () =>{
-        let time = this._inputNumberMinutes.value * 1;
+        let time = Number(this._inputNumberMinutes.value);
         this._model.powerTimer(time, true).then((data)=> this._pToString.innerText = this._model.toString());
-        setInterval(()=>this._timerLbl.innerText = Timer.counter(false, time).next().value, 1000);
+        let timerCountFunction = setInterval(() =>{
+            let time2 = time --;
+            this._timerLbl.innerText = time;
+            if (this._timerLbl.innerText == "0"){
+                clearInterval(timerCountFunction);
+            }
+        }, 1000);   
         }
     }
 
     _powerOffRadioTimerClickHandler(){
         return () =>{
-        let time = this._inputNumberMinutes.value * 1;
+        let time = Number(this._inputNumberMinutes.value);
         this._model.powerTimer(time, false).then((data)=> this._pToString.innerText = this._model.toString());
-        //setInterval(()=>this._timerLbl.innerText = Timer.counter(false, time).next().value, 1000);
+        let timerCountFunction = setInterval(() =>{
+            let time2 = time --;
+            this._timerLbl.innerText = time;
+            if (this._timerLbl.innerText == "0"){
+                clearInterval(timerCountFunction);
+            }
+        }, 1000); 
+        }
+    }
+
+    _timerBtnClickHandler(){
+        return (e) =>{
+            e.target.nextSibling.classList.toggle("hiddenListDev");
         }
     }
 
@@ -60,6 +78,7 @@ class DrowDevice{
         pDecorate1.className = "decorate p";
         this._divDevice.appendChild(pDecorate1);
 
+        
         //radio powerOn
         const radioPowerOn = document.createElement("input");
         radioPowerOn.type = "radio";
@@ -74,23 +93,24 @@ class DrowDevice{
         pDecorate2.className = "decorateP";
         this._divDevice.appendChild(pDecorate2);
 
+        const timerBtn = document.createElement("button");
+        timerBtn.innerText="Timer";
+        timerBtn.className = "";
+        timerBtn.addEventListener("click", this._timerBtnClickHandler());
+        this._divDevice.appendChild(timerBtn);
+
         //radio powerOf
         const radioPowerOff = document.createElement("input");
         radioPowerOff.type = "radio";
         radioPowerOff.name = "power";
         radioPowerOff.value = "false";
         radioPowerOff.checked="checked";
-        radioPowerOff.addEventListener("click", this._powerOffRadioClickHandler())
+        radioPowerOff.addEventListener("click", this._powerOffRadioClickHandler());
         pDecorate2.appendChild(radioPowerOff);
 
         const divTimer = document.createElement("div");
-        divTimer.className = "timerDiv";
+        divTimer.className = "timerDiv hiddenListDev";
         this._divDevice.appendChild(divTimer);
-
-        const pDecorate3 = document.createElement("p");
-        pDecorate3.innerText="Timer:";
-        pDecorate3.className = "decorateP";
-        divTimer.appendChild(pDecorate3);
 
         this._inputNumberMinutes = document.createElement("input");
         this._inputNumberMinutes.type = "number";
@@ -136,18 +156,6 @@ class DrowDevice{
         this._timerLbl.className = "timerLbl";
         this._timerLbl.innerText = "Timer counter";
         divTimer.appendChild(this._timerLbl);
-
-
-
-
-
-
-
-
-
-
-
-
 
         this._mountPoint.appendChild(this._divDevice);
 

@@ -28,6 +28,8 @@ loadScript("./src/js/view/DrowNameList.js");
 loadScript("./src/js/view/DrowDevice.js");
 loadScript("./src/js/view/DrowInternetDevice.js");
 loadScript("./src/js/view/DrowSoundDevice.js");
+loadScript("./src/js/view/DrowMp3.js");
+loadScript("./src/js/view/DrowLocker.js");
 loadScript("./src/js/view/DrowWiFiRouter.js"); 
 
 
@@ -35,9 +37,13 @@ loadScript("./src/js/view/DrowWiFiRouter.js");
 let d1 = new Device(`kkk`);
 let d2 = new Device(`kkk`);
 let d3 = new Device(`kkk`);
+let sd = new SoundDevice(`ooo`);
 let id1 = new InternetDevice("qwe");
-let wf = new WiFiRouter("rrr")
-let mp3 = new Mp3Player("ttt", "gggg", "disk")
+let wf = new WiFiRouter("rrr");
+let mp3 = new Mp3Player("ttt", "gggg", "disk");
+let lc = new Locker("close");
+sh.addDevice("hall", lc);
+sh.addDevice("hall", mp3);
 sh.addDevice("hall", d1);
 sh.addDevice("bathroom", d2);
 sh.addDevice("hall", d3);
@@ -51,7 +57,9 @@ const drowDev = new DrowDevice(d1, mp);
 const drowIDev = new DrowInternetDevice(id1, mp);
 const drowList = new DrowList(ar, mp);
 const drowWf = new DrowWiFiRouter(wf, mp);
-const drowSound = new DrowSoundDevice(mp3, mp);
+const drowSound = new DrowSoundDevice(sd, mp);
+const drowMp3 = new DrowMp3(mp3, mp);
+const drowLocker = new DrowLocker(lc, mp);
 
 drowWf.render();
 

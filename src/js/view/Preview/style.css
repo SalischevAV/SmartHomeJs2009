@@ -31,3 +31,7 @@
     display: none;
 }
 
+.selectedItem{
+    background-color: chartreuse;
+}
+

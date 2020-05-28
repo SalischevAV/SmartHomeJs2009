@@ -30,3 +30,7 @@
 .hiddenListDev{
     display: none;
 }
+
+.selectedItem{
+    background-color: chartreuse;
+}

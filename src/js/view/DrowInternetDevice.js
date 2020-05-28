@@ -39,7 +39,7 @@ class DrowInternetDevice extends DrowDevice {
         this._divDevice.appendChild(btnConnect);
 
         this._divConnectedDevice = document.createElement("div");
-        this._divConnectedDevice.className = "hiddenListDev";
+        this._divConnectedDevice.className = "hiddenListDev connectedDevDiv";
         this._divConnectedDevice.addEventListener("click", this._divConnectedDeviceClickHandler());
         this._mountPoint.appendChild(this._divConnectedDevice);
 
