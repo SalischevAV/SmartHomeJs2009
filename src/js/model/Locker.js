@@ -18,7 +18,7 @@ class Locker extends InternetDevice {
                         this._position = position;
                         resolve(position);
                     } else reject(new Error(`Incorrect position value`))
-                }, time);
+                }, time*1000);
             });
         } else throw new Error(`${this.constructor.name} error: all manipulation can be only if power on.`)
     }

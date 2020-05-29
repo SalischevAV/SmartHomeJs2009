@@ -75,7 +75,7 @@ class DrowDevice{
         //<p></p>
         const pDecorate1 = document.createElement("p");
         pDecorate1.innerText="PowerOn";
-        pDecorate1.className = "decorate p";
+        pDecorate1.className = "decoratep";
         this._divDevice.appendChild(pDecorate1);
 
         
@@ -90,7 +90,7 @@ class DrowDevice{
         //<p></p>
         const pDecorate2 = document.createElement("p");
         pDecorate2.innerText="PowerOff";
-        pDecorate2.className = "decorateP";
+        pDecorate2.className = "decoratep";
         this._divDevice.appendChild(pDecorate2);
 
         const timerBtn = document.createElement("button");
@@ -127,7 +127,7 @@ class DrowDevice{
 
         const pDecorate4 = document.createElement("p");
         pDecorate4.innerText="PowerOn";
-        pDecorate4.className = "decorateP";
+        pDecorate4.className = "decoratep";
         divDecorate1.appendChild(pDecorate4);
 
         this._radioTimerPowerOn = document.createElement("input");
@@ -140,7 +140,7 @@ class DrowDevice{
 
         const pDecorate5 = document.createElement("p");
         pDecorate5.innerText="PowerOff";
-        pDecorate5.className = "decorateP";
+        pDecorate5.className = "decoratep";
         divDecorate1.appendChild(pDecorate5);
 
         const radioTimerPowerOff = document.createElement("input");

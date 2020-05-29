@@ -12,17 +12,19 @@ async function loadScript (src){
 }
 
 loadScript("./src/js/supporting/Constats.js");
-loadScript("./src/js/SmartHome.js"); 
 loadScript("./src/js/supporting/Regulator.js");
 loadScript("./src/js/supporting/Validator.js");
 loadScript("./src/js/supporting/Timer.js");
 loadScript("./src/js/supporting/List.js"); 
+loadScript("./src/js/supporting/FabricDevice.js");
+loadScript("./src/js/supporting/FabricDrower.js"); 
 loadScript("./src/js/model/Device.js");
 loadScript("./src/js/model/InternetDevice.js");
 loadScript("./src/js/model/SoundDevice.js");
 loadScript("./src/js/model/Mp3Player.js");
 loadScript("./src/js/model/WiFirouter.js"); 
 loadScript("./src/js/model/Locker.js");
+loadScript("./src/js/model/SmartHome.js"); 
 loadScript("./src/js/view/DrowList.js");
 loadScript("./src/js/view/DrowNameList.js");
 loadScript("./src/js/view/DrowDevice.js");
@@ -31,6 +33,7 @@ loadScript("./src/js/view/DrowSoundDevice.js");
 loadScript("./src/js/view/DrowMp3.js");
 loadScript("./src/js/view/DrowLocker.js");
 loadScript("./src/js/view/DrowWiFiRouter.js"); 
+loadScript("./src/js/view/DrowSmartHome.js");
 
 
 /*let sh = new SmartHome();
@@ -60,6 +63,7 @@ const drowWf = new DrowWiFiRouter(wf, mp);
 const drowSound = new DrowSoundDevice(sd, mp);
 const drowMp3 = new DrowMp3(mp3, mp);
 const drowLocker = new DrowLocker(lc, mp);
+const drowSH = new DrowSmartHome(sh, mp)
 
 drowWf.render();
 
