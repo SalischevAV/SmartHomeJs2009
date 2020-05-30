@@ -58,6 +58,17 @@ class DrowSmartHome {
         }
     }
 
+    _createBtnClickHandler(){
+        return () => {
+        let deviceType = this._deviceSelect.value;
+        let brand = this._brandSelect.value;
+        let location = this._locationSelect.value;
+        let device = FabricDevice.createDevice(deviceType, brand);
+        let drower = FabricDrower.createDrower(device, location); 
+        drower.render();
+        }
+    }
+
     render() {
         const creationDiv = document.createElement("div");
         creationDiv.classList.add("creationDiv");
@@ -119,6 +130,7 @@ class DrowSmartHome {
         this._createBtn.type = "button";
         this._createBtn.innerText = "Create";
         this._createBtn.disabled = "disabled";
+        this._createBtn.addEventListener("click", this._createBtnClickHandler());
         creationDiv.appendChild(this._createBtn);
 
 

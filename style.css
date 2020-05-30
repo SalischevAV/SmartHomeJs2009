@@ -34,3 +34,9 @@
 .selectedItem{
     background-color: chartreuse;
 }
+
+.deviceDiv{
+    float: left;
+    display: inline-block;
+    height: 320px;
+}
